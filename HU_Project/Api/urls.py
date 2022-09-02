@@ -4,7 +4,6 @@ from django.urls import path, re_path
 from Api import views
 
 
-
 urlpatterns=[
     re_path(r'^issues$',views.issuesApi),
     #re_path(r'^issues/([0-9]+)$',views.issuesApi),
@@ -15,4 +14,7 @@ urlpatterns=[
     re_path(r'^projects/([0-9]+)$',views.projects_detail),
 
     path('hello/', views.HelloView.as_view(), name ='hello'),
+    path('demo', views.DemoView.as_view(), name="demo"),
+
+    path('register', views.Register.as_view(), name="register"),
 ]

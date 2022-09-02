@@ -7,11 +7,13 @@ from django.http.response import JsonResponse
 from Api.models import Issues,Project
 from Api.serializers import IssuesSerializer,ProjectsSerializer
 
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated,BasePermission
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from django.contrib.auth.models import User
+from rest_framework_simplejwt.tokens import RefreshToken
 
 # Create your views here.
 
@@ -118,10 +120,37 @@ def projects_detail(request, id):
 
 
 class HelloView(APIView):
-	permission_classes = (IsAuthenticated)
+	permission_classes = (IsAuthenticated, )
 
 	def get(self, request):
 		content = {'message': 'Hello, World'}
 		return Response(content)
+
+
+class DemoView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request):
+        print(request.user)
+        return Response({"message": "Your are authenticated!"})
+
+
+class Register(APIView):
+    def post(self, request):
+        username = request.data["username"]
+        password = request.data["password"]
+        user = User(username=username)
+        user.set_password(password)
+        user.save()
+        refresh = RefreshToken.for_user(user)
+
+        return Response(
+            {
+                "status":"success",
+                "user_id": user.id,
+                "refresh": str(refresh),
+                "access": str(refresh.access_token)
+
+            }
+        )
 
 

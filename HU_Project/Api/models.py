@@ -1,4 +1,5 @@
 from django.db import models
+#from django.contrib.auth.models import BaseUserManager,AbstractBaseUser
 
 # Create your models here.
 class Issues(models.Model):
@@ -14,3 +15,6 @@ class Project(models.Model):
     ProjectDescription = models.CharField(max_length=350)
     ProjectAssignee = models.CharField(max_length=150)
     ProjectReporter = models.CharField(max_length=150)
+
+
+
