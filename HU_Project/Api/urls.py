@@ -13,6 +13,4 @@ urlpatterns=[
     re_path(r'^projects$',views.projectsApi),
     #re_path(r'^projects/([0-9]+)$',views.projectsApi),
     re_path(r'^projects/([0-9]+)$',views.projects_detail),
-
-    path('hello/', views.HelloView.as_view(), name ='hello'),
 ]
