@@ -138,7 +138,7 @@ class Register(APIView):
     def post(self, request):
         username = request.data["username"]
         password = request.data["password"]
-        user = User(username=username)
+        user = User.objects.get(username=username)
         user.set_password(password)
         user.save()
         refresh = RefreshToken.for_user(user)
