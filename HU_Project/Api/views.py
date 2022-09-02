@@ -7,11 +7,6 @@ from django.http.response import JsonResponse
 from Api.models import Issues,Project
 from Api.serializers import IssuesSerializer,ProjectsSerializer
 
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
-from rest_framework.views import APIView
-
-from rest_framework_simplejwt.authentication import JWTAuthentication
 
 # Create your views here.
 
@@ -116,12 +111,5 @@ def projects_detail(request, id):
         return JsonResponse("Deleted Successfully",safe=False)
 
 
-
-class HelloView(APIView):
-	permission_classes = (IsAuthenticated)
-
-	def get(self, request):
-		content = {'message': 'Hello, World'}
-		return Response(content)
 
 
