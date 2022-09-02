@@ -183,23 +183,3 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'eventlog': {
-            'class': 'eventlog.services.EventLogHandler'
-        },
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-    },
-    'loggers': {
-        'root': {
-            'handlers': ['console', 'eventlog'],
-            'level': 'INFO',
-            'propagate': True,
-        },
-    }
-}
